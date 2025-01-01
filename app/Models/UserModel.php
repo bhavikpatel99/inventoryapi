@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $primaryKey = 'UserID';
     protected $allowedFields = [
         'HotelID', 'UserTypeID', 'Username', 'Password', 
-        'IsActive', 'IsDeleted'
+        'IsActive', 'IsDeleted','ProfileImg'
     ];
     protected $returnType = 'array';
 }

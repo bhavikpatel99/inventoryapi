@@ -11,3 +11,6 @@ $routes->get('/login', 'UserController::index');
 $routes->post('/authenticate', 'UserController::authenticate');
 $routes->get('/logout', 'UserController::logout');
 
+//Usermgmt
+$routes->get('/user', 'UserController::user');
+

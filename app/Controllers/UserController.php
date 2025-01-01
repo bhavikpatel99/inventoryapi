@@ -28,6 +28,7 @@ class UserController extends BaseController
                 'UserID' => $user['UserID'],
                 'Username' => $user['Username'],
                 'HotelID' => $user['HotelID'],
+                'ProfileImg' => $user['ProfileImg'],
                 'logged_in' => true
             ]);
             return redirect()->to('/dashboard');
@@ -40,5 +41,10 @@ class UserController extends BaseController
     {
         session()->destroy();
         return redirect()->to('/login');
+    }
+
+    public function user()
+    {
+        return view('UserManagement/user', ['title' => 'User Management']);
     }
 }

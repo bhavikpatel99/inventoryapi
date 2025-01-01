@@ -1,0 +1,50 @@
+# Ignore sensitive files
+.env
+.env.*
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor settings
+*.vscode/
+*.idea/
+*.swp
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore PHPUnit test results
+/build/
+.phpunit.result.cache
+
+# Ignore CodeIgniter writable folder
+/writable/cache/*
+/writable/logs/*
+/writable/session/*
+/writable/uploads/*
+!writable/cache/index.html
+!writable/logs/index.html
+!writable/session/index.html
+!writable/uploads/index.html
+
+# Ignore CI4 generated files
+/public/uploads/
+
+# Ignore backup files
+*.bak
+*.backup
+*.tmp
+
+# Ignore node_modules (if used)
+node_modules/
+
+# Ignore miscellaneous
+*.log
+*.sql
+*.sqlite
+*.tar.gz
+*.zip
+*.bak
+*.backup
+*.tmp
