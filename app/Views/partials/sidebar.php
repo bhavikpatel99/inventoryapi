@@ -3,20 +3,44 @@
      <!-- Brand Logo -->
      <a href="#" class="brand-link">
          <img src="<?= base_url('assets/dist/img/AdminLTELogo.png') ?>" alt="hotellogo" class="brand-image img-circle elevation-3" style="opacity: .8">
-         <span class="brand-text font-weight-light">hotelname</span>
+         <span class="brand-text font-weight-light">
+            <?php
+                 if (session('HotelID') == 0 || session('HotelID') == null) {
+                     echo 'Hotel Management';
+                 } else {
+                     echo 'Hotel Management';
+                 }
+            ?>
+         </span>
      </a>
 
      <!-- Sidebar -->
      <div class="sidebar">
-         <!-- Sidebar user (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="<?= base_url('assets/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
+                 <?php
+                    if (session('ProfileImg') == null) {
+                        echo '<img src="' . base_url('assets/dist/img/user2-160x160.jpg') . '" class="img-circle elevation-2" alt="User Image">';
+                    } else {
+                        echo '<img src="' . base_url('assets/dist/img/profile/') . session('ProfileImg') . '" class="img-circle elevation-2" alt="User Image">';
+                    }
+                    ?>
              </div>
              <div class="info">
-                 <a href="#" class="d-block">Alexander Pierce</a>
+                 <a href="#" class="d-block"><?= session('Username'); ?></a>
              </div>
          </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-warning ml-2">
+                <i class="fa fa-user" style="color: white;"></i>
+            </a>
+            <a href="#" class="btn btn-outline-secondary ml-2">
+                <i class="fa fa-info-circle" style="color: white;"></i>
+            </a>
+            <a href="<?= base_url('/logout')?>" class="btn btn-outline-primary ml-2">
+                <i class="fa fa-power-off" style="color: white;"></i>
+            </a>
+        </div>
 
          <!-- SidebarSearch Form -->
          <div class="form-inline">
@@ -34,7 +58,7 @@
          <nav class="mt-2">
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                  <li class="nav-item">
-                     <a href="<?=site_url('/')?>" class="nav-link">
+                     <a href="<?= site_url('/') ?>" class="nav-link">
                          <i class="nav-icon fas fa-tachometer-alt"></i>
                          <p>
                              Dashboard
