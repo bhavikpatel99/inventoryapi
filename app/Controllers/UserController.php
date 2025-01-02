@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\FillUserTypeModel;
 
 class UserController extends BaseController
 {
@@ -19,9 +20,9 @@ class UserController extends BaseController
         $password = $this->request->getPost('password');
 
         $user = $model->where('Username', $username)
-                      ->where('IsActive', 1)
-                      ->where('IsDeleted', 0)   
-                      ->first();
+            ->where('IsActive', 1)
+            ->where('IsDeleted', 0)
+            ->first();
 
         if (password_verify($password, $user['Password'])) {
             session()->set([
@@ -45,6 +46,16 @@ class UserController extends BaseController
 
     public function user()
     {
-        return view('UserManagement/user', ['title' => 'User Management']);
+        $model = new UserModel();
+        $userTypeModel = new FillUserTypeModel();
+
+        $usertypes = $userTypeModel->findAll();
+        $users = $model->getUsersWithUserType();
+
+        return view('UserManagement/user', [
+            'title' => 'User Management',
+            'users' => $users,
+            'usertypes' => $usertypes
+        ]);
     }
 }
