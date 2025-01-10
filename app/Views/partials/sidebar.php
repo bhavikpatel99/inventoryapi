@@ -5,7 +5,7 @@
          <img src="<?= base_url('assets/dist/img/AdminLTELogo.png') ?>" alt="hotellogo" class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">
             <?php
-                 if (session('HotelID') == 0 || session('HotelID') == null) {
+                 if (session('hotelId') == 0 || session('hotelId') == null) {
                      echo 'Hotel Management';
                  } else {
                      echo 'Hotel Management';
@@ -19,15 +19,15 @@
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
                  <?php
-                    if (session('ProfileImg') == null) {
+                    if (session('profileImg') == null) {
                         echo '<img src="' . base_url('assets/dist/img/user2-160x160.jpg') . '" class="img-circle elevation-2" alt="User Image">';
                     } else {
-                        echo '<img src="' . base_url('assets/dist/img/profile/') . session('ProfileImg') . '" class="img-circle elevation-2" alt="User Image">';
+                        echo '<img src="' . base_url('assets/dist/img/profile/') . session('profileImg') . '" class="img-circle elevation-2" alt="User Image">';
                     }
                     ?>
              </div>
              <div class="info">
-                 <a href="#" class="d-block"><?= session('Username'); ?></a>
+                 <a href="#" class="d-block"><?= session('userName'); ?></a>
              </div>
          </div>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">

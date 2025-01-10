@@ -6,6 +6,11 @@
 .DS_Store
 Thumbs.db
 
+# Ignore debugger files
+*.log
+*.pid
+*.seed
+*.json
 # Ignore IDE/editor settings
 *.vscode/
 *.idea/

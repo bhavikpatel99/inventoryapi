@@ -19,17 +19,17 @@ class UserController extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $user = $model->where('Username', $username)
-            ->where('IsActive', 1)
-            ->where('IsDeleted', 0)
+        $user = $model->where('userName', $username)
+            ->where('isActive', 1)
+            ->where('isDeleted', 0)
             ->first();
 
-        if (password_verify($password, $user['Password'])) {
+        if (password_verify($password, $user['password'])) {
             session()->set([
-                'UserID' => $user['UserID'],
-                'Username' => $user['Username'],
-                'HotelID' => $user['HotelID'],
-                'ProfileImg' => $user['ProfileImg'],
+                'userId' => $user['userId'],
+                'userName' => $user['userName'],
+                'hotelId' => $user['hotelId'],
+                'profileImg' => $user['profileImg'],
                 'logged_in' => true
             ]);
             return redirect()->to('/dashboard');
@@ -41,7 +41,7 @@ class UserController extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/');
     }
 
     public function user()
@@ -57,5 +57,30 @@ class UserController extends BaseController
             'users' => $users,
             'usertypes' => $usertypes
         ]);
+    }
+
+    public function adduser()
+    {
+        $model = new UserModel();
+        $profileimgname = upload_file('profile');
+        $data = [
+            'profileImg' => $profileimgname,
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'userName' => $this->request->getPost('username'),
+            'userTypeId' => $this->request->getPost('userType'),
+            'firstName' => $this->request->getPost('firstname'),
+            'middleName' => $this->request->getPost('middlename'),
+            'lastName' => $this->request->getPost('lastname'),
+            'isActive' => 1,
+            'isDeleted' => 0,
+            'createdBy' => session()->get('userId'),
+            'createdDate' => date('Y-m-d H:i:s'),
+            'hostName' => $_SERVER['REMOTE_HOST'],
+            'iPAddress' => $_SERVER['REMOTE_ADDR']
+        ];
+
+        $model->insert($data);
+
+        return redirect()->to('/user')->with('success', 'User added successfully.');
     }
 }
