@@ -13,4 +13,5 @@ $routes->get('/logout', 'UserController::logout');
 
 //Usermgmt
 $routes->get('/user', 'UserController::user');
-$routes->get('/adduser', 'UserController::adduser');
+$routes->post('/adduser', 'UserController::adduser');
+$routes->get('/getuser', 'UserController::getuser');
